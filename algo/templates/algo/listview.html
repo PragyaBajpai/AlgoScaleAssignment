@@ -1,0 +1,21 @@
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  <h1>WELCOME Dashboard!</h1>
+  <form class="form-group" method="POST" >
+    {% csrf_token %}
+    {% include 'algo/user-list.html' %}
+    <hr>
+    <input class="btn btn-danger" value="Delete User" type="submit" role="button">
+  </form>
+{% else %}
+  <p>You are not logged in</p>
+  <div>
+    <a type="button" href="{% url 'user-login' %}">login</a>
+  </div>
+  <div>
+    <a type="button" href="{% url 'signup' %}">Sign Up</a>
+  </div>
+{% endif %}
+{% endblock %}
